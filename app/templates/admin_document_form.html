@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="nav">
+    <a href="/admin">Back to Dashboard</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <h1>{{ action }} Document</h1>
+  <form method="post" action="{% if document %}/admin/documents/{{ document.id }}/edit{% else %}/admin/documents/new{% endif %}">
+    <label>Owner</label>
+    <select name="owner_id" required>
+      {% for u in users %}
+      <option value="{{ u.id }}" {% if document and document.owner_id == u.id %}selected{% endif %}>{{ u.user_id }}{% if u.is_admin %} (Admin){% endif %}</option>
+      {% endfor %}
+    </select>
+
+    <label>Document Title</label>
+    <input name="title" type="text" required value="{{ document.title if document else '' }}" />
+
+    <label>Document Description</label>
+    <textarea name="description" rows="5">{{ document.description if document else '' }}</textarea>
+
+    <label>Document Summary</label>
+    <textarea name="summary" rows="5">{{ document.summary if document else '' }}</textarea>
+
+    <button type="submit">Save Document</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="nav">
+    <a href="/admin/users">Back to Users</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <h1>{{ action }} User</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form method="post" action="{% if user %}/admin/users/{{ user.id }}/edit{% else %}/admin/users/new{% endif %}">
+    <label>User ID</label>
+    <input name="user_id" type="text" required value="{{ user.user_id if user else '' }}" />
+
+    <label>Password {% if user %}(leave blank to keep existing){% endif %}</label>
+    <input name="password" type="password" {% if not user %}required{% endif %} />
+
+    <label>
+      <input name="is_admin" type="checkbox" {% if user and user.is_admin %}checked{% endif %} />
+      Is Admin
+    </label>
+    <br /><br />
+
+    <button type="submit">Save User</button>
+  </form>
+{% endblock %}
