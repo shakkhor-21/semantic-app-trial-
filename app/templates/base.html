@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title or "Document App" }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f7f7; }
+    .nav { margin-bottom: 1rem; }
+    .nav a { margin-right: 1rem; }
+    .container { background: #fff; padding: 1.2rem; border-radius: 8px; box-shadow: 0 1px 5px rgba(0,0,0,0.08); }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem; vertical-align: top; }
+    th { background: #f1f1f1; }
+    input[type="text"], input[type="password"], textarea, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; margin-bottom: 0.8rem; }
+    button { padding: 0.5rem 1rem; cursor: pointer; }
+    .error { color: #b00020; font-weight: bold; }
+    .actions form { display: inline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

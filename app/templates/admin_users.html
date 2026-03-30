@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="nav">
+    <a href="/admin">Admin Dashboard</a>
+    <a href="/admin/users/new">Create User</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <h1>Manage Users</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.user_id }}</td>
+        <td>{% if user.is_admin %}Admin{% else %}User{% endif %}</td>
+        <td><a href="/admin/users/{{ user.id }}/edit">Edit</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No users found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

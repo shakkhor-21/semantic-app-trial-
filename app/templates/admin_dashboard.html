@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="nav">
+    <a href="/admin">Admin Dashboard</a>
+    <a href="/admin/documents/new">Create New Document</a>
+    <a href="/admin/users">Manage Users</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <h1>Admin Panel</h1>
+  <p>Welcome, <strong>{{ admin.user_id }}</strong>.</p>
+
+  <h2>All Documents</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Summary</th>
+        <th>Owner</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doc in documents %}
+      <tr>
+        <td>{{ doc.id }}</td>
+        <td>{{ doc.title }}</td>
+        <td>{{ doc.description }}</td>
+        <td>{{ doc.summary }}</td>
+        <td>{{ doc.owner.user_id }}</td>
+        <td class="actions">
+          <a href="/admin/documents/{{ doc.id }}/edit">Edit</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">No documents found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
